@@ -180,7 +180,8 @@ class SiteBuilder {
                     config: this.config,
                     content: htmlContent,
                     metadata: metadata,
-                    content_type: contentType
+                    content_type: contentType,
+                    current_page: contentType
                 });
 
                 // Write output file
@@ -205,7 +206,8 @@ class SiteBuilder {
                 const templateName = `${contentType}.html`;
                 const rendered = this.env.render(templateName, {
                     config: this.config,
-                    content_items: contentItems
+                    content_items: contentItems,
+                    current_page: contentType
                 });
 
                 const outputFile = path.join(this.outputDir, `${contentType}.html`);
@@ -234,7 +236,8 @@ class SiteBuilder {
             const rendered = this.env.render('index.html', {
                 config: this.config,
                 featured_writings: featuredWritings,
-                featured_projects: featuredProjects
+                featured_projects: featuredProjects,
+                current_page: 'home'
             });
 
             const outputFile = path.join(this.outputDir, "index.html");

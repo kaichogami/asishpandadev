@@ -16,7 +16,7 @@
     <nav class="navigation">
         {% for nav_item in config.navigation %}
         <a href="{% if nav_item.id == 'home' %}{{ config.site.base_url }}/{% else %}{{ config.site.base_url }}/{{ nav_item.id }}.html{% endif %}" 
-           class="nav-link {% if nav_item.active %}active{% endif %}">
+           class="nav-link {% if (current_page == 'home' and nav_item.id == 'home') or (current_page == nav_item.id) %}active{% endif %}">
             {{ nav_item.name }}
         </a>
         {% endfor %}

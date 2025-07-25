@@ -17,10 +17,8 @@ site:
 navigation:
   - name: "Home"
     id: "home"
-    active: true
   - name: "Writings"
     id: "writings"
-    active: false
   # Temporarily hidden projects navigation - uncomment to restore
   # - name: "Projects"
   #   id: "projects"
