@@ -1,18 +1,16 @@
 site:
-  title: "Alex Chen"
-  subtitle: "Senior Python Developer & Technical Writer"
-  description: "I build scalable data systems and write about software engineering, automation, and the intersection of technology and productivity."
-  author: "Alex Chen"
-  email: "alex@example.com"
+  title: "Asish Panda"
+  subtitle: "Generalist"
+  description: "I seek to arrive at the right question to ask."
+  author: "Asish Panda"
+  email: "me@asishpanda.dev"
   
   # Social links
   links:
-    github: "https://github.com/alexchen"
-    twitter: "https://twitter.com/alexchen"
-    linkedin: "https://linkedin.com/in/alexchen"
+    twitter: "https://twitter.com/thestillpanda"
   
   # Site settings
-  base_url: ""
+  base_url: "http://localhost:8000"
   output_dir: "output"
   
 # Navigation items
