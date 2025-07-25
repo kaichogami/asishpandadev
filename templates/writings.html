@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Writings - {{ config.site.title }}{% endblock %}
+
+{% block content %}
+<h1>Writings</h1>
+<p class="bio">Technical articles, tutorials, and thoughts on software engineering, data systems, and developer productivity.</p>
+
+<div class="content-list">
+    {% for writing in content_items %}
+    <div class="item">
+        <div class="item-title">
+            <a href="{{ config.site.base_url }}/writings/{{ writing.id }}.html">{{ writing.title }}</a>
+        </div>
+        <p>{{ writing.description }}</p>
+        <div class="item-meta">
+            {{ writing.date|dateformat }} | {{ writing.tags|join(', ') }} | {{ writing.read_time }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

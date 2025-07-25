@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Recent Writings</h2>
+<div class="content-list">
+    {% for writing in featured_writings %}
+    <div class="item">
+        <div class="item-title">
+            <a href="{{ config.site.base_url }}/writings/{{ writing.id }}.html">{{ writing.title }}</a>
+        </div>
+        <p>{{ writing.description }}</p>
+        <div class="item-meta">
+            {{ writing.date|dateformat }} | {{ writing.tags|join(', ') }} | {{ writing.read_time }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<p class="bio-simple">
+    {{ config.site.description }}
+</p>
+
+
+<!-- Temporarily hidden projects section - uncomment to restore
+<h2>Featured Projects</h2>
+<div class="content-list">
+    {% for project in featured_projects %}
+    <div class="item">
+        <div class="item-title">
+            <a href="{{ config.site.base_url }}/projects/{{ project.id }}.html">{{ project.title }}</a>
+        </div>
+        <p>{{ project.description }}</p>
+        <div class="item-meta">
+            {{ project.status }} | {{ project.tags|join(', ') }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+-->
+{% endblock %}

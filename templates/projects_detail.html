@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}{{ metadata.title }} - {{ config.site.title }}{% endblock %}
+
+{% block content %}
+<a href="{{ config.site.base_url }}/projects.html" class="back-link">← Back to Projects</a>
+
+<article class="content-detail">
+    <header class="content-header">
+        <h1>{{ metadata.title }}</h1>
+        <div class="content-meta">
+            <span class="status">{{ metadata.status }}</span>
+            <span class="separator">|</span>
+            <span class="tags">{{ metadata.tags|join(', ') }}</span>
+        </div>
+        
+        {% if metadata.github_url or metadata.demo_url %}
+        <div class="project-links">
+            {% if metadata.github_url %}
+            <a href="{{ metadata.github_url }}" target="_blank">GitHub</a>
+            {% endif %}
+            {% if metadata.demo_url %}
+            <a href="{{ metadata.demo_url }}" target="_blank">Live Demo</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </header>
+    
+    <div class="markdown-content">
+        {{ content|safe }}
+    </div>
+    
+    <footer class="content-footer">
+        <p>By {{ config.site.author }}</p>
+    </footer>
+</article>
+{% endblock %}

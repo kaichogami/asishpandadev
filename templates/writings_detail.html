@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ metadata.title }} - {{ config.site.title }}{% endblock %}
+
+{% block content %}
+<a href="{{ config.site.base_url }}/writings.html" class="back-link">← Back to Writings</a>
+
+<article class="content-detail">
+    <header class="content-header">
+        <h1>{{ metadata.title }}</h1>
+        <div class="content-meta">
+            <span class="date">{{ metadata.date|dateformat }}</span>
+            <span class="separator">|</span>
+            <span class="tags">{{ metadata.tags|join(', ') }}</span>
+            <span class="separator">|</span>
+            <span class="read-time">{{ metadata.read_time }}</span>
+        </div>
+    </header>
+    
+    <div class="markdown-content">
+        {{ content|safe }}
+    </div>
+    
+    <footer class="content-footer">
+        <p>By {{ config.site.author }}</p>
+    </footer>
+</article>
+{% endblock %}

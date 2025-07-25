@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - {{ config.site.title }}{% endblock %}
+
+{% block content %}
+<h1>Projects</h1>
+<p class="bio">Open source tools, production systems, and experiments in Python, data engineering, and developer productivity.</p>
+
+<div class="content-list">
+    {% for project in content_items %}
+    <div class="item">
+        <div class="item-title">
+            <a href="{{ config.site.base_url }}/projects/{{ project.id }}.html">{{ project.title }}</a>
+        </div>
+        <p>{{ project.description }}</p>
+        
+        {% if project.github_url or project.demo_url %}
+        <div class="project-links">
+            {% if project.github_url %}
+            <a href="{{ project.github_url }}" target="_blank">GitHub</a>
+            {% endif %}
+            {% if project.demo_url %}
+            <a href="{{ project.demo_url }}" target="_blank">Demo</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <div class="item-meta">
+            {{ project.status }} | {{ project.tags|join(', ') }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

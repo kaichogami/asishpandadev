@@ -1,0 +1,44 @@
+{
+  "name": "static-site-generator",
+  "version": "1.0.0",
+  "description": "Static Site Generator that converts markdown content to HTML using Nunjucks templates",
+  "type": "module",
+  "main": "build.js",
+  "bin": {
+    "build": "./build.js"
+  },
+  "scripts": {
+    "build": "node build.js --build",
+    "serve": "node build.js --serve",
+    "dev": "node build.js --watch --serve",
+    "watch": "node build.js --watch",
+    "start": "npm run dev",
+    "deploy": "./scripts/deploy.sh",
+    "quick-deploy": "./scripts/quick-deploy.sh",
+    "deploy:check": "npm run build && echo 'Build successful - ready for deployment'"
+  },
+  "keywords": [
+    "static-site-generator",
+    "markdown",
+    "nunjucks",
+    "blog",
+    "website"
+  ],
+  "author": "Alex Chen",
+  "license": "MIT",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "commander": "^11.1.0",
+    "express": "^4.18.2",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "marked": "^9.1.6",
+    "nunjucks": "^3.2.4"
+  },
+  "devDependencies": {
+    "highlight.js": "^11.9.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ config.site.title }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ config.site.base_url }}/static/style.css">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="header">
+        <h1>{{ config.site.title }}</h1>
+        <p><strong>{{ config.site.subtitle }}</strong></p>
+    </div>
+
+    <nav class="navigation">
+        {% for nav_item in config.navigation %}
+        <a href="{% if nav_item.id == 'home' %}{{ config.site.base_url }}/{% else %}{{ config.site.base_url }}/{{ nav_item.id }}.html{% endif %}" 
+           class="nav-link {% if nav_item.active %}active{% endif %}">
+            {{ nav_item.name }}
+        </a>
+        {% endfor %}
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="contact-links">
+            <a href="mailto:{{ config.site.email }}">{{ config.site.email }}</a>
+            {% for link in items(config.site.links) %}
+            | <a href="{{ link.value }}">{{ link.key|title }}</a>
+            {% endfor %}
+        </div>
+        <div class="last-updated">Last updated: {{ "now"|dateformat }}</div>
+    </footer>
+</body>
+</html>

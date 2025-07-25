@@ -1,0 +1,32 @@
+site:
+  title: "Alex Chen"
+  subtitle: "Senior Python Developer & Technical Writer"
+  description: "I build scalable data systems and write about software engineering, automation, and the intersection of technology and productivity."
+  author: "Alex Chen"
+  email: "alex@example.com"
+  
+  # Social links
+  links:
+    github: "https://github.com/alexchen"
+    twitter: "https://twitter.com/alexchen"
+    linkedin: "https://linkedin.com/in/alexchen"
+  
+  # Site settings
+  base_url: ""
+  output_dir: "output"
+  
+# Navigation items
+navigation:
+  - name: "Home"
+    id: "home"
+    active: true
+  - name: "Writings"
+    id: "writings"
+    active: false
+  # Temporarily hidden projects navigation - uncomment to restore
+  # - name: "Projects"
+  #   id: "projects"
+  #   active: false
+
+# Content metadata is now automatically read from markdown files in content/
+# No manual configuration needed - just add markdown files with frontmatter
