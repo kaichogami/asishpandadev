@@ -20,7 +20,7 @@
 {% if available_tags and available_tags|length > 1 %}
 <div class="filter-pills">
     {% if current_tag %}
-        <a href="{% if current_category == 'articles' %}/writings.html{% else %}/writings/{{ current_category }}.html{% endif %}" class="filter-pill">All</a>
+        <a href="{% if current_category == 'articles' or not current_category %}/writings.html{% else %}/writings/{{ current_category }}.html{% endif %}" class="filter-pill">All</a>
     {% else %}
         <span class="filter-pill active">All</span>
     {% endif %}

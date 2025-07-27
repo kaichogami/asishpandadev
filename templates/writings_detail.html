@@ -3,7 +3,7 @@
 {% block title %}{{ metadata.title }} - {{ config.site.title }}{% endblock %}
 
 {% block content %}
-<a href="{% if metadata.category == 'articles' %}{{ config.site.base_url }}/writings.html{% else %}{{ config.site.base_url }}/writings/{{ metadata.category }}.html{% endif %}" class="back-link">← Back to {{ metadata.category|title or 'Writings' }}</a>
+<a href="{% if metadata.category == 'articles' or not metadata.category %}{{ config.site.base_url }}/writings.html{% else %}{{ config.site.base_url }}/writings/{{ metadata.category }}.html{% endif %}" class="back-link">← Back to {{ metadata.category|title or 'Writings' }}</a>
 
 <article class="content-detail">
     <header class="content-header">

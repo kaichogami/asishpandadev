@@ -453,7 +453,10 @@ class SiteBuilder {
                 next_page_url: null,
                 prev_page_url: null,
                 current_category: category,
-                available_categories: [category],
+                available_categories: [{
+                    key: category,
+                    title: this.writingTypesConfig?.categories?.[category]?.title || category.charAt(0).toUpperCase() + category.slice(1)
+                }],
                 available_tags: tags,
                 current_tag: tag,
                 current_page: contentType
