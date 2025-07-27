@@ -99,17 +99,22 @@ class SiteBuilder {
     }
 
     dateformatFilter(dateString, format = '%B %d, %Y') {
-        if (typeof dateString === 'string') {
-            const date = new Date(dateString);
-            // Simple date formatting - you might want to use a library like date-fns
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            };
-            return date.toLocaleDateString('en-US', options);
+        let date;
+        if (dateString === 'now') {
+            date = new Date();
+        } else if (typeof dateString === 'string') {
+            date = new Date(dateString);
+        } else {
+            return dateString;
         }
-        return dateString;
+        
+        // Simple date formatting - you might want to use a library like date-fns
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+        return date.toLocaleDateString('en-US', options);
     }
 
     async readMarkdownFile(filePath) {
