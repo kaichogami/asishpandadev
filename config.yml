@@ -10,7 +10,7 @@ site:
     twitter: "https://twitter.com/thestillpanda"
   
   # Site settings
-  base_url: "http://localhost:8000"
+  base_url: "https://asishpanda.dev"
   output_dir: "output"
   
 # Navigation items
@@ -19,10 +19,15 @@ navigation:
     id: "home"
   - name: "Writings"
     id: "writings"
-  # Temporarily hidden projects navigation - uncomment to restore
-  # - name: "Projects"
-  #   id: "projects"
-  #   active: false
+  - name: "Projects"
+    id: "projects"
 
 # Content metadata is now automatically read from markdown files in content/
 # No manual configuration needed - just add markdown files with frontmatter
+
+# Pagination configuration
+pagination:
+  items_per_page: 10          # Number of items to show per page
+  show_page_numbers: true     # Whether to show numbered pagination
+  max_page_links: 5           # Maximum number of page links to show in navigation
+  compact_cards: true         # Use compact card design globally

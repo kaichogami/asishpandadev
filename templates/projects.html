@@ -3,32 +3,36 @@
 {% block title %}Projects - {{ config.site.title }}{% endblock %}
 
 {% block content %}
-<h1>Projects</h1>
 <p class="bio">Open source tools, production systems, and experiments in Python, data engineering, and developer productivity.</p>
 
-<div class="content-list">
+{% if content_items and content_items.length > 0 %}
+<div class="content-list table-layout">
     {% for project in content_items %}
     <div class="item">
         <div class="item-title">
             <a href="{{ config.site.base_url }}/projects/{{ project.id }}.html">{{ project.title }}</a>
         </div>
+        <div class="item-meta">
+            <span class="meta-status">{{ project.status }}</span>
+            <span class="meta-tags">{{ project.tags|join(', ') }}</span>
+        </div>
         <p>{{ project.description }}</p>
-        
-        {% if project.github_url or project.demo_url %}
-        <div class="project-links">
+        <div class="quick-actions">
             {% if project.github_url %}
-            <a href="{{ project.github_url }}" target="_blank">GitHub</a>
+            <a href="{{ project.github_url }}" target="_blank" class="quick-action">GitHub</a>
             {% endif %}
             {% if project.demo_url %}
-            <a href="{{ project.demo_url }}" target="_blank">Demo</a>
+            <a href="{{ project.demo_url }}" target="_blank" class="quick-action">Demo</a>
             {% endif %}
-        </div>
-        {% endif %}
-        
-        <div class="item-meta">
-            {{ project.status }} | {{ project.tags|join(', ') }}
+            <a href="{{ config.site.base_url }}/projects/{{ project.id }}.html" class="quick-action primary">Details</a>
         </div>
     </div>
     {% endfor %}
 </div>
+{% else %}
+<div class="empty-state">
+    <p>Coming Soon</p>
+    <p>Exciting projects are in development and will be showcased here soon.</p>
+</div>
+{% endif %}
 {% endblock %}

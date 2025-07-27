@@ -3,9 +3,8 @@ id: "understanding-risk"
 title: "Understanding Risk"
 description: "A philosophical and practical take on risk how it relates to reward, expectations, and how to reduce it smartly in life and investing."
 date: "2023-02-15"
-tags: ["Risk Management", "Investing", "Decision Making", "Philosophy"]
-read_time: "8 min read"
-featured: true
+tag: "investing"
+read_time: "4 min read"
 ---
 
 # Risk hai toh ishq hai

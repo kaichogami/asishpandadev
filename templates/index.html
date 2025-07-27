@@ -1,40 +1,64 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Recent Writings</h2>
-<div class="content-list">
-    {% for writing in featured_writings %}
+{% if home_writings %}
+<h2>Recent Articles</h2>
+<div class="content-list table-layout">
+    {% for writing in home_writings %}
     <div class="item">
         <div class="item-title">
             <a href="{{ config.site.base_url }}/writings/{{ writing.id }}.html">{{ writing.title }}</a>
         </div>
-        <p>{{ writing.description }}</p>
         <div class="item-meta">
-            {{ writing.date|dateformat }} | {{ writing.tags|join(', ') }} | {{ writing.read_time }}
+            <span class="meta-date">{{ writing.date|dateformat }}</span>
+            <span class="meta-tags">{{ writing.tags|join(', ') }}</span>
+            <span>{{ writing.read_time }}</span>
+        </div>
+        <p>{{ writing.description }}</p>
+        <div class="quick-actions">
+            <a href="{{ config.site.base_url }}/writings/{{ writing.id }}.html" class="quick-action primary">Read</a>
         </div>
     </div>
     {% endfor %}
 </div>
 
-<p class="bio-simple">
-    {{ config.site.description }}
-</p>
+<div class="view-all-link">
+    <a href="{{ config.site.base_url }}/writings.html">View all writings →</a>
+</div>
+{% endif %}
 
 
-<!-- Temporarily hidden projects section - uncomment to restore
-<h2>Featured Projects</h2>
-<div class="content-list">
-    {% for project in featured_projects %}
+
+{# Projects section temporarily hidden
+{% if has_projects %}
+<h2>Recent Projects</h2>
+<div class="content-list table-layout">
+    {% for project in home_projects %}
     <div class="item">
         <div class="item-title">
             <a href="{{ config.site.base_url }}/projects/{{ project.id }}.html">{{ project.title }}</a>
         </div>
-        <p>{{ project.description }}</p>
         <div class="item-meta">
-            {{ project.status }} | {{ project.tags|join(', ') }}
+            <span class="meta-status">{{ project.status }}</span>
+            <span class="meta-tags">{{ project.tags|join(', ') }}</span>
+        </div>
+        <p>{{ project.description }}</p>
+        <div class="quick-actions">
+            {% if project.github_url %}
+            <a href="{{ project.github_url }}" target="_blank" class="quick-action">GitHub</a>
+            {% endif %}
+            {% if project.demo_url %}
+            <a href="{{ project.demo_url }}" target="_blank" class="quick-action">Demo</a>
+            {% endif %}
+            <a href="{{ config.site.base_url }}/projects/{{ project.id }}.html" class="quick-action primary">Details</a>
         </div>
     </div>
     {% endfor %}
 </div>
--->
+
+<div class="view-all-link">
+    <a href="{{ config.site.base_url }}/projects.html">View all projects →</a>
+</div>
+{% endif %}
+#}
 {% endblock %}

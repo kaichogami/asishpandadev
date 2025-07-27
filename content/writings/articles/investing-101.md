@@ -3,9 +3,8 @@ id: "investing-101"
 title: "Investing 101"
 description: "A foundational perspective on investing from ancient practices to modern decision-making models using emotion, probability, and introspection."
 date: "2023-01-25"
-tags: ["Investing", "Decision Making", "Personal Growth", "Mental Models"]
-read_time: "14 min read"
-featured: true
+tag: "investing"
+read_time: "8 min read"
 ---
 
 # The moment I try to put something in words, I leave out vast amount of information.

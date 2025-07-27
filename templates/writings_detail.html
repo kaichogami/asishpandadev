@@ -3,7 +3,7 @@
 {% block title %}{{ metadata.title }} - {{ config.site.title }}{% endblock %}
 
 {% block content %}
-<a href="{{ config.site.base_url }}/writings.html" class="back-link">← Back to Writings</a>
+<a href="{% if metadata.category == 'articles' %}{{ config.site.base_url }}/writings.html{% else %}{{ config.site.base_url }}/writings/{{ metadata.category }}.html{% endif %}" class="back-link">← Back to {{ metadata.category|title or 'Writings' }}</a>
 
 <article class="content-detail">
     <header class="content-header">
@@ -11,7 +11,11 @@
         <div class="content-meta">
             <span class="date">{{ metadata.date|dateformat }}</span>
             <span class="separator">|</span>
-            <span class="tags">{{ metadata.tags|join(', ') }}</span>
+            {% if metadata.category %}
+                <span class="category">{{ metadata.category|title }}</span>
+                <span class="separator">|</span>
+            {% endif %}
+            <span class="tags">{{ metadata.tag or 'uncategorized' }}</span>
             <span class="separator">|</span>
             <span class="read-time">{{ metadata.read_time }}</span>
         </div>

@@ -4,7 +4,6 @@ title: "Distributed API Monitor"
 description: "Multi-region monitoring system that tracks API endpoints across different geographical locations."
 tags: ["FastAPI", "Celery", "Redis", "Docker", "AWS"]
 status: "Open Source | 150+ GitHub stars"
-featured: true
 github_url: "https://github.com/alexchen/api-monitor"
 ---
 

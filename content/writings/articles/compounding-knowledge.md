@@ -3,9 +3,8 @@ id: "compounding-knowledge"
 title: "Compounding Knowledge"
 description: "Its not just money that builds up over time but also knowledge"
 date: "2023-03-01"
-tags: ["Self-Improvement", "Learning", "Growth Mindset", "Productivity"]
-read_time: "7 min read"
-featured: true
+tag: "philosophy"
+read_time: "4 min read"
 ---
 
 # It is said that you become a magician in another realm if you invest in yourself enough.

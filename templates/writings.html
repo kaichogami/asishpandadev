@@ -3,20 +3,85 @@
 {% block title %}Writings - {{ config.site.title }}{% endblock %}
 
 {% block content %}
-<h1>Writings</h1>
 <p class="bio">A stasis of my thought of a specific topic in a specific point of time</p>
 
-<div class="content-list">
-    {% for writing in content_items %}
+<!-- Category Tabs -->
+<div class="tabs">
+    {% for category in available_categories %}
+        {% if category.key == (current_category or 'articles') %}
+            <a href="{% if category.key == 'articles' %}/writings.html{% else %}/writings/{{ category.key }}.html{% endif %}" class="tab active">{{ category.title }}</a>
+        {% else %}
+            <a href="{% if category.key == 'articles' %}/writings.html{% else %}/writings/{{ category.key }}.html{% endif %}" class="tab">{{ category.title }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<!-- Tag Filter Pills -->
+{% if available_tags and available_tags|length > 1 %}
+<div class="filter-pills">
+    {% if current_tag %}
+        <a href="{% if current_category == 'articles' %}/writings.html{% else %}/writings/{{ current_category }}.html{% endif %}" class="filter-pill">All</a>
+    {% else %}
+        <span class="filter-pill active">All</span>
+    {% endif %}
+    
+    {% for tag in available_tags %}
+        {% if tag == current_tag %}
+            <span class="filter-pill active">{{ tag }}</span>
+        {% else %}
+            <a href="/writings/{{ current_category or 'articles' }}/tag/{{ tag }}/" class="filter-pill">{{ tag }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="content-list table-layout">
+    {% for writing in page_items %}
     <div class="item">
         <div class="item-title">
-            <a href="{{ config.site.base_url }}/writings/{{ writing.id }}.html">{{ writing.title }}</a>
+            <a href="{{ config.site.base_url }}/writings/{{ writing.category or 'articles' }}/{{ writing.id }}.html">{{ writing.title }}</a>
+        </div>
+        <div class="item-meta">
+            {% if writing.category and writing.category != 'articles' %}
+            <span class="item-category">{{ writing.category }}</span>
+            {% endif %}
+            <span class="meta-date">{{ writing.date|dateformat }}</span>
+            <span class="meta-tags">{{ writing.tag or 'uncategorized' }}</span>
+            <span>{{ writing.read_time }}</span>
         </div>
         <p>{{ writing.description }}</p>
-        <div class="item-meta">
-            {{ writing.date|dateformat }} | {{ writing.tags|join(', ') }} | {{ writing.read_time }}
+        <div class="quick-actions">
+            <a href="{{ config.site.base_url }}/writings/{{ writing.category or 'articles' }}/{{ writing.id }}.html" class="quick-action primary">Read</a>
         </div>
     </div>
     {% endfor %}
 </div>
+
+{% if total_pages > 1 %}
+<div class="pagination">
+    {% if has_prev_page %}
+        <a href="{{ prev_page_url }}" class="pagination-link prev">← Previous</a>
+    {% endif %}
+    
+    <div class="pagination-info">
+        <span class="current-page">Page {{ current_page_number }} of {{ total_pages }}</span>
+    </div>
+    
+    {% if has_next_page %}
+        <a href="{{ next_page_url }}" class="pagination-link next">Next →</a>
+    {% endif %}
+</div>
+
+<div class="pagination-numbers">
+    {% for page_num in range(1, total_pages + 1) %}
+        {% if page_num == current_page_number %}
+            <span class="pagination-number current">{{ page_num }}</span>
+        {% elif page_num == 1 %}
+            <a href="/writings.html" class="pagination-number">{{ page_num }}</a>
+        {% else %}
+            <a href="/writings/page/{{ page_num }}/" class="pagination-number">{{ page_num }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
 {% endblock %}
