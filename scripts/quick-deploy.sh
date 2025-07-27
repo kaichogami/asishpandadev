@@ -30,7 +30,7 @@ git add .
 
 if git commit -m "Deploy: $(date '+%Y-%m-%d %H:%M:%S')"; then
     echo "✅ Changes committed"
-    git push origin main
+    git push origin master
     echo "✅ Quick deploy complete!"
     echo "🌐 Check your GitHub Pages site in a few minutes"
 else
