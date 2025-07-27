@@ -1,0 +1,19 @@
+{
+  "categories": {
+    "articles": {
+      "title": "Articles",
+      "tags": ["philosophy", "investing", "productivity", "technology", "science"],
+      "description": "In-depth articles on various topics"
+    },
+    "research": {
+      "title": "Research",
+      "tags": ["analysis", "studies", "data"],
+      "description": "Research-based content and analysis"
+    },
+    "thoughts": {
+      "title": "Thoughts",
+      "tags": ["reflection", "opinion", "musings"],
+      "description": "Personal thoughts and reflections"
+    }
+  }
+}

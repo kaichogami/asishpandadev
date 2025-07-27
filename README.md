@@ -53,14 +53,18 @@ personal_website/
 ├── build.js              # Main build script
 ├── config.yml            # Site configuration
 ├── package.json           # Dependencies and scripts
+├── config/              # JSON configuration files
+│   ├── featured.json     # Featured content configuration
+│   └── writing_types.json # Writing categories and tags
 ├── content/              # Markdown content
 │   ├── writings/         # Blog posts
-│   └── projects/         # Project pages (currently hidden)
+│   └── projects/         # Project pages
 ├── templates/            # Nunjucks templates
 │   ├── base.html         # Base layout
 │   ├── index.html        # Homepage template
 │   ├── writings.html     # Writings list page
-│   └── writings_detail.html # Individual writing page
+│   ├── writings_detail.html # Individual writing page
+│   └── projects.html     # Projects list page
 ├── static/               # Static assets (CSS, images)
 │   └── style.css         # Main stylesheet
 └── output/               # Generated site (git-ignored)
@@ -70,31 +74,64 @@ personal_website/
 
 ### Adding New Writing
 
-1. Create a new markdown file in `content/writings/`
-2. Add metadata to `config.yml` under the `writings` section
-3. Use this format for the markdown file:
+1. Create a new markdown file in `content/writings/articles/` (or appropriate category subdirectory)
+2. Use this format for the markdown file:
 
 ```markdown
 ---
+id: "unique-post-id"
 title: "Your Post Title"
+description: "Brief description of the post"
 date: "2024-01-15"
-tags: ["tag1", "tag2"]
+tag: "philosophy"
+read_time: "5 min read"
 ---
 
 Your content here...
 ```
 
+3. To feature the writing on the homepage, add its `id` to `config/featured.json`
+4. Ensure the `tag` matches one of the tags defined in `config/writing_types.json` for proper categorization
+
 ### Configuration
 
+#### Site Configuration (`config.yml`)
 Edit `config.yml` to:
 - Update site information (title, description, email)
 - Add/remove social links
 - Configure navigation
-- Manage content metadata
+
+#### Featured Content (`config/featured.json`)
+Control which content appears on the homepage:
+```json
+{
+  "writings": ["slowing-time", "compounding-knowledge", "understanding-risk"],
+  "projects": []
+}
+```
+
+#### Writing Categories (`config/writing_types.json`)
+Define categories and their associated tags:
+```json
+{
+  "categories": {
+    "articles": {
+      "title": "Articles",
+      "tags": ["philosophy", "investing", "productivity"],
+      "description": "In-depth articles on various topics"
+    }
+  }
+}
+```
 
 ### Featured Content
 
-Set `featured: true` in the config.yml metadata to display content on the homepage.
+To feature content on the homepage:
+1. Add the content's `id` to the appropriate array in `config/featured.json`
+2. For writings: add to the `writings` array
+3. For projects: add to the `projects` array
+
+Note: Content is categorized automatically based on the `tag` field matching the tags defined in `config/writing_types.json`.
 
 ## Available Scripts
 
@@ -174,19 +211,15 @@ node build.js --serve --port 3000
 - Update the `navigation` section in `config.yml`
 - Links are automatically generated in the header
 
-## Restoring Projects Section
+## JSON Configuration Files
 
-The projects section is currently hidden but can be easily restored:
+The site uses JSON configuration files for centralized content management:
 
-1. **In `build.js`**:
-   - Line 175: Change `for (const contentType of ['writings']) {` to `for (const contentType of ['writings', 'projects']) {`
-   - Line 272: Uncomment `await this.buildContentPages('projects');`
+### `config/featured.json`
+Controls which content appears on the homepage. Content listed here will be prioritized over non-featured content when selecting items for the homepage display.
 
-2. **In `templates/index.html`**:
-   - Uncomment the entire "Featured Projects" section (lines 23-38)
-
-3. **In `config.yml`**:
-   - Uncomment the Projects navigation item (lines 27-29)
+### `config/writing_types.json`
+Defines writing categories and their associated tags. Content is automatically categorized based on the `tag` field in the frontmatter matching the tags defined here. This replaces the old directory-based categorization system.
 
 ## Troubleshooting
 
@@ -202,7 +235,8 @@ The projects section is currently hidden but can be easily restored:
 ### Content Not Updating
 - Make sure you're running `npm run dev` for auto-rebuilding
 - Check that your markdown files are in the correct directory
-- Verify metadata in `config.yml` matches your file names
+- For featured content, verify the content `id` is listed in `config/featured.json`
+- For categorization, ensure the `tag` field matches tags defined in `config/writing_types.json`
 
 ### CSS Not Loading
 - Ensure `static/style.css` exists
