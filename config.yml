@@ -15,8 +15,6 @@ site:
   
 # Navigation items
 navigation:
-  - name: "Home"
-    id: "home"
   - name: "Writings"
     id: "writings"
   - name: "Projects"
